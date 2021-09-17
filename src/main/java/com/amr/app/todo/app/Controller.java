@@ -1,6 +1,7 @@
 package com.amr.app.todo.app;
 
 import com.amr.app.todo.config.exception.inputRequiredException.InputRequireException;
+import com.amr.app.todo.config.exception.inputRequiredExceptionV2.InputRequireExceptionV2;
 
 import java.sql.Timestamp;
 import java.util.HashMap;
@@ -18,13 +19,17 @@ public class Controller {
     }
 
     public void globalValidationFormInput(Map required) {
+        Map getAllNulledValue = new HashMap();
         for (Object key : required.keySet()) {
             required.get(key);
             if (required.get(key) == null) {
-                throw new InputRequireException(
-                        (String) key
-                );
+                getAllNulledValue.put(key, " this field is can't be empty");
             }
+        }
+        if (!getAllNulledValue.isEmpty()){
+            throw new InputRequireExceptionV2(
+                    getAllNulledValue
+            );
         }
     }
 
