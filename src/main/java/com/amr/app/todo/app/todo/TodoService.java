@@ -52,6 +52,7 @@ public class TodoService extends Controller implements TodoServiceInterface {
         Map request = new HashMap();
         request.put("todo_name", todo.getTodo_name());
         request.put("status", todo.getTodo_status());
+        request.put("todo_order", todo.getTodo_order());
 
         globalValidationFormInput(request);
     }
